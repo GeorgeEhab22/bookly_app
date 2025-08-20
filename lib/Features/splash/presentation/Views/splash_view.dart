@@ -1,3 +1,4 @@
+import 'package:bookly_app/Features/splash/presentation/Views/widgets/splash_view_body.dart';
 import 'package:flutter/cupertino.dart';
 
 class SplashView extends StatelessWidget {
@@ -5,6 +6,6 @@ class SplashView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return const SplashViewBody();
   }
 }

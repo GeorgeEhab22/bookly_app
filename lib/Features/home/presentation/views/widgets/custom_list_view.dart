@@ -8,25 +8,28 @@ class FeaturedBooksListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.28,
-      child: ScrollConfiguration(
-        behavior: ScrollConfiguration.of(context).copyWith(
-          dragDevices: {
-            PointerDeviceKind.touch,
-            PointerDeviceKind.mouse,
-          },
-        ),
-        child: ListView.builder(
-          physics: const BouncingScrollPhysics(), // Better scrolling feel
-          itemCount: 10,
-          scrollDirection: Axis.horizontal,
-          itemBuilder: (context, index) {
-            return const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 8.0),
-              child: ListViewItem(),
-            );
-          },
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height * 0.28,
+        child: ScrollConfiguration(
+          behavior: ScrollConfiguration.of(context).copyWith(
+            dragDevices: {
+              PointerDeviceKind.touch,
+              PointerDeviceKind.mouse,
+            },
+          ),
+          child: ListView.builder(
+            physics: const BouncingScrollPhysics(), // Better scrolling feel
+            itemCount: 10,
+            scrollDirection: Axis.horizontal,
+            itemBuilder: (context, index) {
+              return const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
+                child: ListViewItem(),
+              );
+            },
+          ),
         ),
       ),
     );

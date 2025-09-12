@@ -16,18 +16,29 @@ class _SplashViewBodyState extends State<SplashViewBody>
     with SingleTickerProviderStateMixin {
   late AnimationController animationController;
   late Animation<Offset> slidingAnimation;
+
   @override
   void initState() {
     super.initState();
     initSlidingAnimation();
-    navigateToHome();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await precacheImage(const AssetImage(AssetsData.logo), context);
+      animationController.forward();
+      Future.delayed(const Duration(seconds: 2), () {
+        Get.off(
+          () => const HomeView(),
+          transition: Transition.fade,
+          duration: kTransitionDuration,
+        );
+      });
+    });
   }
 
-  
   @override
   void dispose() {
-    super.dispose();
     animationController.dispose();
+    super.dispose();
   }
 
   @override
@@ -37,27 +48,17 @@ class _SplashViewBodyState extends State<SplashViewBody>
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Image.asset(AssetsData.logo),
-        const SizedBox(
-          height: 7,
-        ),
+        const SizedBox(height: 7),
         SlidingWidget(slidingAnimation: slidingAnimation),
       ],
     );
   }
+
   void initSlidingAnimation() {
-     animationController =
+    animationController =
         AnimationController(vsync: this, duration: const Duration(seconds: 1));
     slidingAnimation =
         Tween<Offset>(begin: const Offset(0, 2), end: Offset.zero)
             .animate(animationController);
-    animationController.forward();
-  }
-  
-  void navigateToHome() {
-    Future.delayed(const Duration(seconds: 2), () {
-       Get.off(() => const HomeView(), transition: Transition.fade,duration:kTransitionDuration );
-    });
   }
 }
-
-

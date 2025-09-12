@@ -28,7 +28,7 @@ class CustomButton extends StatelessWidget {
           style: Styles.textStyle18.copyWith(
             color: textColor,
             fontWeight: FontWeight.w900,
-            fontFamily: GoogleFonts.montserrat().fontFamily,
+            fontFamily: 'Bookly',
             fontSize: fontSize?? 18,
           ),
         ),

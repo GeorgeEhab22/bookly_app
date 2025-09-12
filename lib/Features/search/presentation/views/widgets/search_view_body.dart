@@ -1,24 +1,47 @@
+import 'package:bookly_app/core/utils/styles.dart';
+import 'package:bookly_app/features/home/presentation/views/widgets/best_seller_list_view_item.dart';
 import 'package:bookly_app/features/search/presentation/views/widgets/custom_search_text_field.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class SearchViewBody extends StatelessWidget {
   const SearchViewBody({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 30.0),
-      child: Column(children: [CustomSearchTextField()]),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 30.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const CustomSearchTextField(),
+          const SizedBox(height: 16),
+          Text(
+            'Search Result',
+            style: Styles.textStyle18.copyWith(fontFamily: 'Bookly'),
+          ),
+          const SizedBox(height: 16),
+          const Expanded(child: SearchResultListView()),
+        ],
+      ),
     );
   }
 }
 
-class CustomSearchTextField extends StatelessWidget {
-  const CustomSearchTextField({super.key});
+class SearchResultListView extends StatelessWidget {
+  const SearchResultListView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const CustomSearchTextFiels();
+    return ListView.builder(
+      padding: EdgeInsets.zero,
+      scrollDirection: Axis.vertical,
+      itemCount: 10,
+      itemBuilder: (context, index) {
+        return const Padding(
+          padding: EdgeInsets.symmetric(vertical: 10.0),
+          child: BookListViewItem(),
+        );
+      },
+    );
   }
 }

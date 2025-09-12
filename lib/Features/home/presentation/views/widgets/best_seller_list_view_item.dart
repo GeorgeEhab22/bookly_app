@@ -5,20 +5,20 @@ import 'package:bookly_app/features/home/presentation/views/widgets/book_rating.
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-class BestSellerListViewItem extends StatelessWidget {
-  const BestSellerListViewItem({super.key});
+class BookListViewItem extends StatelessWidget {
+  const BookListViewItem({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
+      onTap: () {
         GoRouter.of(context).push(AppRouter.bookDetails);
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 12.0),
         child: SizedBox(
-         height: 120,
-          
+          height: 120,
+
           child: Row(
             children: [
               AspectRatio(
@@ -34,8 +34,8 @@ class BestSellerListViewItem extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 30),
-               Expanded(
-                 child: Column(
+              Expanded(
+                child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
@@ -48,24 +48,23 @@ class BestSellerListViewItem extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 3),
-                    const Text(
-                      'Rudyard Kipling',
-                      style: Styles.textStyle14,
-                    ),
+                    const Text('Rudyard Kipling', style: Styles.textStyle14),
                     const SizedBox(height: 3),
-                     Row(
+                    Row(
                       children: [
                         Text(
                           '19.99 \$',
-                          style: Styles.textStyle20.copyWith(fontWeight: FontWeight.bold,),
+                          style: Styles.textStyle20.copyWith(
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         const Spacer(),
-                        BookRating(),
+                        const BookRating(),
                       ],
                     ),
                   ],
-                             ),
-               ),
+                ),
+              ),
             ],
           ),
         ),

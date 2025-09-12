@@ -1,8 +1,7 @@
-import 'package:bookly_app/constants.dart';
+import 'package:bookly_app/core/utils/app_router.dart';
 import 'package:bookly_app/core/utils/assets.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import '../../../../home/presentation/views/home_view.dart';
+import 'package:go_router/go_router.dart';
 import 'sliding_text.dart';
 
 class SplashViewBody extends StatefulWidget {
@@ -17,23 +16,24 @@ class _SplashViewBodyState extends State<SplashViewBody>
   late AnimationController animationController;
   late Animation<Offset> slidingAnimation;
 
-  @override
-  void initState() {
-    super.initState();
-    initSlidingAnimation();
+@override
+void initState() {
+  super.initState();
+  initSlidingAnimation();
 
-    WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await precacheImage(const AssetImage(AssetsData.logo), context);
-      animationController.forward();
-      Future.delayed(const Duration(seconds: 2), () {
-        Get.off(
-          () => const HomeView(),
-          transition: Transition.fade,
-          duration: kTransitionDuration,
-        );
-      });
+  WidgetsBinding.instance.addPostFrameCallback((_) async {
+    final router = GoRouter.of(context);
+
+    await precacheImage(const AssetImage(AssetsData.logo), context);
+    animationController.forward();
+
+    Future.delayed(const Duration(seconds: 2), () {
+      router.push(AppRouter.home);
     });
-  }
+  });
+}
+
+
 
   @override
   void dispose() {

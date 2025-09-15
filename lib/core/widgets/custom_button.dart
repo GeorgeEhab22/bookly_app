@@ -2,13 +2,21 @@ import 'package:bookly_app/core/utils/styles.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, required this.text, required this.onPressed, required this.backgroundColor, required this.textColor,  this.borderRadius,  this.fontSize});
+  const CustomButton({
+    super.key,
+    required this.text,
+    required this.onPressed,
+    required this.backgroundColor,
+    required this.textColor,
+    this.borderRadius,
+    this.fontSize,
+  });
   final String text;
   final VoidCallback onPressed;
   final Color backgroundColor;
   final Color textColor;
   final BorderRadius? borderRadius;
-  final double? fontSize ;
+  final double? fontSize;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +26,7 @@ class CustomButton extends StatelessWidget {
         style: TextButton.styleFrom(
           backgroundColor: backgroundColor,
           shape: RoundedRectangleBorder(
-            borderRadius: borderRadius?? BorderRadius.circular(16),
+            borderRadius: borderRadius ?? BorderRadius.circular(16),
           ),
         ),
         onPressed: () {},
@@ -28,7 +36,7 @@ class CustomButton extends StatelessWidget {
             color: textColor,
             fontWeight: FontWeight.w900,
             fontFamily: 'Bookly',
-            fontSize: fontSize?? 18,
+            fontSize: fontSize ?? 18,
           ),
         ),
       ),

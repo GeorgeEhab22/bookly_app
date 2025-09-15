@@ -8,17 +8,14 @@ class SimilarBooksListView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  SizedBox(
+    return SizedBox(
       height: MediaQuery.of(context).size.height * 0.14,
       child: ScrollConfiguration(
         behavior: ScrollConfiguration.of(context).copyWith(
-          dragDevices: {
-            PointerDeviceKind.touch,
-            PointerDeviceKind.mouse,
-          },
+          dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse},
         ),
         child: ListView.builder(
-          physics: const BouncingScrollPhysics(), 
+          physics: const BouncingScrollPhysics(),
           itemCount: 10,
           scrollDirection: Axis.horizontal,
           itemBuilder: (context, index) {

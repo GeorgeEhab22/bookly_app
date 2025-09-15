@@ -10,7 +10,7 @@ class BooksAction extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-      
+
         children: [
           Expanded(
             child: CustomButton(
@@ -24,7 +24,7 @@ class BooksAction extends StatelessWidget {
               ),
             ),
           ),
-           Expanded(
+          Expanded(
             child: CustomButton(
               text: 'Free Preview',
               onPressed: () {},

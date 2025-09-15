@@ -16,7 +16,6 @@ class CustomBookImage extends StatelessWidget {
           ),
           borderRadius: BorderRadius.circular(16),
         ),
-        
       ),
     );
   }

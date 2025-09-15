@@ -14,10 +14,7 @@ class FeaturedBooksListView extends StatelessWidget {
         height: MediaQuery.of(context).size.height * 0.28,
         child: ScrollConfiguration(
           behavior: ScrollConfiguration.of(context).copyWith(
-            dragDevices: {
-              PointerDeviceKind.touch,
-              PointerDeviceKind.mouse,
-            },
+            dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse},
           ),
           child: ListView.builder(
             physics: const BouncingScrollPhysics(), // Better scrolling feel

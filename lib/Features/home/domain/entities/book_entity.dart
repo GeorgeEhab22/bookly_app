@@ -1,10 +1,14 @@
 class BookEntity {
-  final String image;
+  final String bookId;
+  final String? image;
   final String title;
-  final String author;
-  final double rating;
-  final num price;
-  const BookEntity({
+  final String? author;
+  final num rating;
+  final num? price;
+  final num? count;
+  const BookEntity(
+    { required this.count,
+    required this.bookId,
     required this.image,
     required this.title,
     required this.author,

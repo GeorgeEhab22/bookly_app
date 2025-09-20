@@ -17,6 +17,7 @@ class FeaturedBooksListView extends StatelessWidget {
           behavior: ScrollConfiguration.of(context).copyWith(
             dragDevices: {PointerDeviceKind.touch, PointerDeviceKind.mouse},
           ),
+          
           child: ListView.builder(
             physics: const BouncingScrollPhysics(), 
             itemCount: books.length,

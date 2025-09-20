@@ -5,17 +5,17 @@ import 'reading_modes.dart';
 
 class VolumeInfo {
   String? title;
-  List<String>? authors;
+  List<String>? authors; // ✅ Changed from List? to List<String>?
   String? publisher;
   String? publishedDate;
   String? description;
-  List<IndustryIdentifier>? industryIdentifiers;
+  List<IndustryIdentifier>? industryIdentifiers; // ✅ Changed from List? to List<IndustryIdentifier>?
   ReadingModes? readingModes;
   int? pageCount;
   num? averageRating;
   num? ratingsCount;
   String? printType;
-  List<String>? categories;
+  List<String>? categories; // ✅ Changed from List? to List<String>?
   String? maturityRating;
   bool? allowAnonLogging;
   String? contentVersion;
@@ -50,9 +50,9 @@ class VolumeInfo {
     this.ratingsCount
   });
 
-  factory VolumeInfo.fromJson(Map<String, dynamic> json) => VolumeInfo(
+  factory VolumeInfo.fromJson(Map<String, dynamic> json) => VolumeInfo( // ✅ Added <String, dynamic>
     title: json['title'] as String?,
-    authors: json['authors'] as List<String>?,
+    authors: (json['authors'] as List<dynamic>?)?.map((e) => e.toString()).toList(),
     publisher: json['publisher'] as String?,
     publishedDate: json['publishedDate'] as String?,
     description: json['description'] as String?,
@@ -66,7 +66,7 @@ class VolumeInfo {
     averageRating: (json['averageRating'] != null) ? (json['averageRating'] as num).toDouble() : null,
     ratingsCount: json['ratingsCount'] as num?,
     printType: json['printType'] as String?,
-    categories: json['categories'] as List<String>?,
+    categories: (json['categories'] as List<dynamic>?)?.map((e) => e.toString()).toList(),
     maturityRating: json['maturityRating'] as String?,
     allowAnonLogging: json['allowAnonLogging'] as bool?,
     contentVersion: json['contentVersion'] as String?,
@@ -84,7 +84,7 @@ class VolumeInfo {
     canonicalVolumeLink: json['canonicalVolumeLink'] as String?,
   );
 
-  Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => { // ✅ Added <String, dynamic>
     'title': title,
     'authors': authors,
     'publisher': publisher,

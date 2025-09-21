@@ -8,6 +8,10 @@ final class FeaturedBooksFailure extends FeaturedBooksState {
   final String errMessage;
   FeaturedBooksFailure(this.errMessage);
 }
+final class FeaturedBooksPaginationFailure extends FeaturedBooksState {
+  final String errMessage;
+  FeaturedBooksPaginationFailure(this.errMessage);
+}
 final class FeaturedBooksSuccess extends FeaturedBooksState {
   final List<BookEntity> books;
   FeaturedBooksSuccess(this.books);

@@ -9,25 +9,27 @@ import 'package:dio/dio.dart';
 class HomeRepoImpl extends HomeRepo {
   final HomeRemoteDataSource remoteDataSource;
   final HomeLocalDataSource localDataSource;
-  HomeRepoImpl({required this.remoteDataSource, required this.localDataSource});
-  
+
+  HomeRepoImpl({
+    required this.remoteDataSource,
+    required this.localDataSource,
+  });
+
   @override
   Future<Either<Failure, List<BookEntity>>> fetchFeaturedBooks({int pageNumber = 0}) async {
     try {
-      List<BookEntity> books = [];
-      
-      books = localDataSource.fetchFeaturedBooks();
-      
-      if (books.isNotEmpty) {
-        return right(books);
+      final cachedBooks = localDataSource.fetchFeaturedBooks(
+          pageNumber: pageNumber
+      );
+      if (cachedBooks.isNotEmpty && pageNumber == 0) {
+        return right(cachedBooks);
       }
-      
-      books = await remoteDataSource.fetchFeaturedBooks();
-      
+
+      final books = await remoteDataSource.fetchFeaturedBooks(pageNumber: pageNumber);
+
       return right(books);
     } catch (e) {
-      
-      if(e is DioException){
+      if (e is DioException) {
         return Left(ServerFailure.fromDioError(e));
       }
       return Left(ServerFailure(e.toString()));
@@ -37,20 +39,15 @@ class HomeRepoImpl extends HomeRepo {
   @override
   Future<Either<Failure, List<BookEntity>>> fetchNewestBooks() async {
     try {
-      List<BookEntity> books = [];
-      
-      books = localDataSource.fetchNewestBooks();
-      
-      if (books.isNotEmpty) {
-        return right(books);
+      final cachedBooks = localDataSource.fetchNewestBooks();
+      if (cachedBooks.isNotEmpty) {
+        return right(cachedBooks);
       }
-      
-      books = await remoteDataSource.fetchNewestBooks();
-      
+
+      final books = await remoteDataSource.fetchNewestBooks();
       return right(books);
     } catch (e) {
-      
-      if(e is DioException){
+      if (e is DioException) {
         return Left(ServerFailure.fromDioError(e));
       }
       return Left(ServerFailure(e.toString()));
